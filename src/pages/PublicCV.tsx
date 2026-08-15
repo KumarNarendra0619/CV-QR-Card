@@ -5,6 +5,7 @@ import { fetchGoogleSheetData } from '../utils/parser';
 import { CVRenderer } from '../components/CVRenderer';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import type { CVConfig } from '../store';
+import { Alert } from '../components/Alert';
 
 const defaultCVData: CVData = {
   profile: { name: 'Loading...', title: '', email: '', phone: '', location: '', summary: '' },
@@ -36,19 +37,33 @@ export const PublicCV: React.FC = () => {
   const fetchData = async (sheetId: string) => {
     try {
       const data = await fetchGoogleSheetData(sheetId);
-      setCvData(data);
+      if (data.profile.name === '' && data.education.length === 0) {
+         setError('No CV data could be found. The Google Sheet may not be public or may lack the required tabs (Profile, Education, etc).');
+      } else {
+         setCvData(data);
+      }
     } catch (err) {
-      setError('Failed to load CV data. Ensure the Google Sheet is public.');
+      setError('Failed to load CV data. Ensure the Google Sheet is published to the web.');
     }
   };
 
   if (error) {
-    return <div className="p-8 text-red-600 text-center mt-20">{error}</div>;
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+        <div className="max-w-md w-full">
+           <Alert type="error" message={error} />
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="bg-gray-500 min-h-screen py-8 print:p-0 print:bg-white">
-      <CVRenderer data={cvData} template={template} />
+    <div className="bg-gray-200/80 min-h-screen py-12 flex justify-center print:p-0 print:bg-white relative">
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20 pointer-events-none print:hidden"></div>
+
+      <div className="bg-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] print:shadow-none print:m-0 z-10">
+        <CVRenderer data={cvData} template={template} />
+      </div>
     </div>
   );
 };
