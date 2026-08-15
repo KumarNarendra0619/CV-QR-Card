@@ -1,0 +1,39 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]      # runs automatically every time you push to main
+  workflow_dispatch:       # lets you also trigger it manually from the Actions tab
+
+permissions:
+  contents: read           # can read repo code
+  pages: write              # can publish to Pages
+  id-token: write           # needed for secure Pages deployment auth
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true  # if you push again while it's running, cancel the old run
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4        # downloads your repo code
+      - uses: actions/setup-node@v4      # installs Node.js
+        with:
+          node-version: 20
+      - run: npm ci                       # installs dependencies (matches package-lock.json)
+      - run: npm run build                # runs "tsc -b && vite build" -> produces dist/
+      - uses: actions/upload-pages-artifact@v3   # packages dist/ folder as a Pages artifact
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build                          # waits for build job to finish
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4     # publishes the artifact to GitHub Pages
