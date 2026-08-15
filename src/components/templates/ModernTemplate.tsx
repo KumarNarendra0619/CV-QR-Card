@@ -55,7 +55,7 @@ export const ModernTemplate: React.FC<ModernTemplateProps> = ({ data }) => {
             <h2 className="text-lg font-bold text-white border-b border-gray-700 pb-2 mb-4 uppercase tracking-widest">Expertise</h2>
             <div className="space-y-4">
               {skills.map((skill, idx) => (
-                <div key={idx}>
+                <div key={idx} className="break-inside-avoid">
                   <h3 className="font-semibold text-blue-400 mb-1">{skill.category}</h3>
                   <div className="flex flex-wrap gap-1">
                     {skill.skills.split(',').map((s, i) => (
@@ -85,7 +85,7 @@ export const ModernTemplate: React.FC<ModernTemplateProps> = ({ data }) => {
             <h2 className="text-xl font-bold text-gray-900 border-b-2 border-blue-500 pb-2 mb-4 uppercase tracking-widest">Experience</h2>
             <div className="space-y-6">
               {experience.map((exp, idx) => (
-                <div key={idx} className="relative pl-4 border-l-2 border-gray-200">
+                <div key={idx} className="relative pl-4 border-l-2 border-gray-200 break-inside-avoid">
                   <div className="absolute w-3 h-3 bg-blue-500 rounded-full -left-[7px] top-1.5 ring-4 ring-gray-50"></div>
                   <h3 className="font-bold text-gray-900 text-base">{exp.position}</h3>
                   <div className="flex justify-between items-center text-xs text-gray-500 mb-2 font-medium">
@@ -104,7 +104,7 @@ export const ModernTemplate: React.FC<ModernTemplateProps> = ({ data }) => {
             <h2 className="text-xl font-bold text-gray-900 border-b-2 border-blue-500 pb-2 mb-4 uppercase tracking-widest">Education</h2>
             <div className="space-y-5">
               {education.map((edu, idx) => (
-                <div key={idx}>
+                <div key={idx} className="break-inside-avoid">
                   <h3 className="font-bold text-gray-900 text-base">{edu.degree} in {edu.field}</h3>
                   <div className="flex justify-between text-xs text-gray-500 mb-1 font-medium">
                     <span className="uppercase tracking-wide">{edu.institution}</span>
@@ -122,7 +122,7 @@ export const ModernTemplate: React.FC<ModernTemplateProps> = ({ data }) => {
             <h2 className="text-xl font-bold text-gray-900 border-b-2 border-blue-500 pb-2 mb-4 uppercase tracking-widest">Publications</h2>
             <div className="space-y-3">
               {publications.map((pub, idx) => (
-                <div key={idx} className="bg-white p-3 rounded shadow-sm border border-gray-100">
+                <div key={idx} className="bg-white p-3 rounded shadow-sm border border-gray-100 break-inside-avoid">
                   <h3 className="font-bold text-gray-800">{pub.title}</h3>
                   <p className="text-xs text-gray-500 mt-1">{pub.authors} • {pub.date}</p>
                   <p className="text-sm italic text-gray-600 mt-1">{pub.publisher}</p>

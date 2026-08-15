@@ -88,7 +88,7 @@ export const Builder: React.FC = () => {
   if (!config) return null;
 
   return (
-    <div className="flex h-screen bg-gray-50 flex-col overflow-hidden font-sans">
+    <div className="flex h-screen bg-gray-50 flex-col overflow-hidden font-sans print:h-auto print:overflow-visible print:block print:bg-white">
       {/* Topbar */}
       <header className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between shrink-0 z-10 print:hidden shadow-sm">
         <div className="flex items-center gap-4">
@@ -116,7 +116,7 @@ export const Builder: React.FC = () => {
       </header>
 
       {/* Main content */}
-      <div className="flex-1 overflow-hidden flex print:overflow-visible print:block relative">
+      <div className="flex-1 overflow-hidden flex print:h-auto print:overflow-visible print:block relative">
 
         {/* Config Sidebar */}
         <div className="w-[400px] bg-white border-r border-gray-200 overflow-y-auto print:hidden shadow-[4px_0_24px_rgba(0,0,0,0.02)] z-10">
@@ -249,7 +249,7 @@ export const Builder: React.FC = () => {
         </div>
 
         {/* Live Preview Desk */}
-        <div className="flex-1 bg-gray-200/80 overflow-auto print:bg-white print:overflow-visible relative">
+        <div className="flex-1 bg-gray-200/80 overflow-auto print:h-auto print:bg-white print:overflow-visible relative">
            {/* Desk texture overlay */}
            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20 pointer-events-none print:hidden"></div>
 

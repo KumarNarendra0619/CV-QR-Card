@@ -36,7 +36,7 @@ export const AcademicTemplate: React.FC<AcademicTemplateProps> = ({ data }) => {
           <h2 className="text-xl font-bold uppercase tracking-wider mb-4 border-b border-gray-300 pb-1">Education</h2>
           <div className="space-y-4">
             {education.map((edu, idx) => (
-              <div key={idx} className="flex flex-col">
+              <div key={idx} className="flex flex-col break-inside-avoid">
                 <div className="flex justify-between items-baseline mb-1">
                   <span className="font-bold text-base">{edu.degree} in {edu.field}</span>
                   <span className="text-gray-600 italic text-xs whitespace-nowrap ml-4">{edu.startDate} – {edu.endDate}</span>
@@ -55,7 +55,7 @@ export const AcademicTemplate: React.FC<AcademicTemplateProps> = ({ data }) => {
           <h2 className="text-xl font-bold uppercase tracking-wider mb-4 border-b border-gray-300 pb-1">Academic & Professional Experience</h2>
           <div className="space-y-6">
             {experience.map((exp, idx) => (
-              <div key={idx} className="flex flex-col">
+              <div key={idx} className="flex flex-col break-inside-avoid">
                 <div className="flex justify-between items-baseline mb-1">
                   <span className="font-bold text-base">{exp.position}</span>
                   <span className="text-gray-600 italic text-xs whitespace-nowrap ml-4">{exp.startDate} – {exp.endDate}</span>
@@ -74,7 +74,7 @@ export const AcademicTemplate: React.FC<AcademicTemplateProps> = ({ data }) => {
           <h2 className="text-xl font-bold uppercase tracking-wider mb-4 border-b border-gray-300 pb-1">Publications</h2>
           <ul className="list-decimal pl-5 space-y-3">
             {publications.map((pub, idx) => (
-              <li key={idx} className="pl-2">
+              <li key={idx} className="pl-2 break-inside-avoid">
                 <span className="text-gray-800">{pub.authors} ({pub.date}). </span>
                 <span className="font-medium">"{pub.title}." </span>
                 <span className="italic">{pub.publisher}</span>
@@ -91,7 +91,7 @@ export const AcademicTemplate: React.FC<AcademicTemplateProps> = ({ data }) => {
           <h2 className="text-xl font-bold uppercase tracking-wider mb-4 border-b border-gray-300 pb-1">Skills & Competencies</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {skills.map((skill, idx) => (
-              <div key={idx}>
+              <div key={idx} className="break-inside-avoid">
                 <span className="font-bold block mb-1">{skill.category}:</span>
                 <span className="text-gray-700 leading-snug">{skill.skills}</span>
               </div>
